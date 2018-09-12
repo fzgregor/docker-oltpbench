@@ -103,6 +103,10 @@ ${ print "${BOLD}OPTIONS${NORM}"; }
 
 -i <isolation> either: TRANSACTION_READ_COMMITED || TRANSACTION_SERIALIZABLE
 
+-s <scale> Scale the amount of data the benchmark uses, default is 100
+
+-S <seconds> How long the benchmark should run, defaults to 86400 (one day)
+
 ${ print "${BOLD}IMPLEMENTATION${NORM}"; }
   version         ${progname} (Blue Medora Inc.) v1.0
   author          Ritchie J Latimore <ritchie.latimore@bluemedora.com>
@@ -141,7 +145,8 @@ function genconf
     r="${rate:=unlimited}" \
     c="${clients:=10}" \
     i="${isolation:=TRANSACTION_READ_COMMITED}" \
-    s="${scale:=100}"
+    s="${scale:=100}" \
+    S="${Seconds:=86400}"
 
 
 
@@ -152,7 +157,7 @@ function genconf
     fi
 
     cat "config-templates/dbs/${ty}.xml" | sed "s/|FQDN|/${f}/; s/|PORT|/${pn}/; s/|DB|/${d}/" > ${t}
-    cat "config-templates/opts.xml" | sed "s/|USER|/${u}/; s/|PASS|/${p}/; s/|RATE|/${r}/; s/|CLIENTS|/${c}/" >> ${t}
+    cat "config-templates/opts.xml" | sed "s/|USER|/${u}/; s/|PASS|/${p}/; s/|RATE|/${r}/; s/|CLIENTS|/${c}/; s/|SECONDS|/${S}/" >> ${t}
 
     for b in ${bench[@]}; do
         print "\n<!-- partition -->\n" >> ${t}
@@ -194,7 +199,7 @@ function main
 
     (( $# == 0 )) && usage
 
-    while getopts f:a:u:p:t:d:r:c:s:i:n:b:o: OPT; do
+    while getopts f:a:u:p:t:d:r:c:s:i:n:b:o:S: OPT; do
         case "${OPT}" in
         f )
             fqdn="${OPTARG}"
@@ -245,6 +250,9 @@ function main
             ;;
         s )
             scale="${OPTARG}"
+            ;;
+        S )
+            Seconds="${OPTARG}"
             ;;
         i )
             isolation="${OPTARG}"

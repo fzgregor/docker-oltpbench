@@ -10,7 +10,7 @@ export target="/oltpbench/templates"
 /oltpbench/bench-confgen.sh -f "${DBFQDN}" -u "${DBUSER}" \
     -p "${DBPASS}" -t "${DBTYPE}" -d "${DBNAME}" \
     -n "${DBPORT}" -b "${BENCH}" -o "${target}" \
-    -r "${RATE}" -c "${CLIENTS}" -s "${SCALE}" -i "${ISOLATION}"
+    -r "${RATE}" -c "${CLIENTS}" -s "${SCALE}" -i "${ISOLATION}" -S "${SECONDS}"
 
 
 /oltpbench/oltpbenchmark -b "${BENCH}" -c "${target}/${DBFQDN}.xml" \

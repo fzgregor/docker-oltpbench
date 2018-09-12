@@ -9,7 +9,7 @@
 
     <!-- A Basic WorkPhase for Mixed Workloads -->
     <work>
-      <time>86400</time>
+      <time>|SECONDS|</time>
 
       <!-- Note: The rate can be set to UNLIMITED or DISABLED.
            It can also be set per workload

@@ -95,6 +95,8 @@ sibench
 
 ```
 
+`SECONDS` -- how long the benchmark should run, defaults to one day
+
 
 **All `*BOOL` vars only accept true or false**
 
