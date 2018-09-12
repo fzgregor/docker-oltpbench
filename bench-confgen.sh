@@ -157,7 +157,7 @@ function genconf
     fi
 
     cat "config-templates/dbs/${ty}.xml" | sed "s/|FQDN|/${f}/; s/|PORT|/${pn}/; s/|DB|/${d}/" > ${t}
-    cat "config-templates/opts.xml" | sed "s/|USER|/${u}/; s/|PASS|/${p}/; s/|RATE|/${r}/; s/|CLIENTS|/${c}/; s/|SECONDS|/${S}/" >> ${t}
+    cat "config-templates/opts.xml" | sed "s/|USER|/${u}/; s/|PASS|/${p}/; s/|RATE|/${r}/; s/|CLIENTS|/${c}/; s/|BENCH_SECS|/${S}/" >> ${t}
 
     for b in ${bench[@]}; do
         print "\n<!-- partition -->\n" >> ${t}

@@ -9,7 +9,8 @@
 
     <!-- A Basic WorkPhase for Mixed Workloads -->
     <work>
-      <time>|SECONDS|</time>
+      <time>|BENCH_SECS|</time>
+      <warmup>10</warmup>
 
       <!-- Note: The rate can be set to UNLIMITED or DISABLED.
            It can also be set per workload
